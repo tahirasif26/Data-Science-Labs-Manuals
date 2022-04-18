@@ -1,0 +1,39 @@
+#Pruning is a data compression technique in machine learning and search algorithms that reduces the size of
+decision trees by removing sections of the tree that are non-critical and redundant to classify instances.
+Pruning reduces the complexity of the final classifier, and hence improves predictive accuracy
+
+
+
+SOME STARTING CODE FOR HELP:
+
+
+#Learn about below libraries from sklearn documentation at https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html
+
+#you need to import these libraries.
+import pandas as pd 
+import numpy as np
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import cross_val_score, StratifiedShuffleSplit, RepeatedKFold, train_test_split
+
+
+#Classifier without pruning
+Gini = DecisionTreeClassifier( criterion='gini' )
+Entropy = DecisionTreeClassifier( criterion='entropy' )
+
+#Classifier with pruning (where cc_alpha is the pruning parameter)
+Gini_P = DecisionTreeClassifier( criterion='gini', ccp_alpha = 0.015)
+Entropy_P = DecisionTreeClassifier( criterion='entropy', ccp_alpha = 0.015)
+
+#Repeated 10 X 10 folds
+CV = RepeatedKFold(n_splits = 10, n_repeats = 10, random_state = 1)
+
+#Holdout approach with 70:30 ratio repeated 100 times
+CV2 = StratifiedShuffleSplit(n_splits=100, test_size=0.3, random_state=0)
+
+# Example of code for Decision tree classifier using GINI without Pruning using 10 X 10 Fold CV 
+  Acc_n_Std = cross_val_score(Gini, X, Y, scoring='accuracy', cv=CV, n_jobs = -1)
+  print('Accuracy: ', np.mean(Acc_n_Std), ' Standard Deviation: ', np.std(Acc_n_Std))
+
+
+
+

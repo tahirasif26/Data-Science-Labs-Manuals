@@ -1,0 +1,98 @@
+#This file contains commands for lab2 tasks
+--------------------------------------------------------------------------------------------------------------------------
+
+#syntax to load data1.csv into dataframe and index column will be column zero
+my_dataframe = pd.read_csv(r"C:\Users\sohail\Desktop\Lab2\data\data\data1.csv", index_col=0)
+
+#Syntax to concatenate rows of two dataframes
+my_dataframe = pd.concat([dataframe1, dataframe2])
+
+#syntax to concatenate columns of two dataframes
+my_dataframe = pd.concat([dataframe1, dataframe2], axis=1)
+
+#Syntax to reset indexes. Parameter 'drop=True' means it will not add extra column of indexes otherwise it will
+my_dataframe=my_dataframe.reset_index(drop=True)
+
+#syntax to replace "Ahsan" with NaN
+import numpy as np
+my_dataframe=my_dataframe.replace('Ahsan',np.NaN)
+
+#syntax to replace all NaN values with mean of its column_values
+my_dataframe = my_dataframe.fillna(my_dataframe.mean())
+
+#synax to round values to two decimal places
+dataframe.round(decimals=2)
+
+#syntax to save my_dataframe as csv file. 'index=False' will not create extra column of indexes. 'header=True' will
+give you name of columns in csv file otherwise not.
+my_dataframe.to_csv (r'Desktop\newdata.csv', index = False, header=True)
+
+#syntax to concatenate rows of two dataframes. 'ignore_index = True' means it will ignore original indexes and will
+generate indexes from 0 to onwards. This is beneficial incase original indexes are irregular 
+MyDataframe = pd.concat([dataframe_3, dataframe_2], ignore_index = True)
+
+#syntax to drop duplicates
+MyDataframe.drop_duplicates(inplace = True)
+
+#will sort values based on column name "cities"
+MyDataframe.sort_values(by = 'cities', inplace = True)
+
+#syntax to sort indexes
+MyDataframe.sort_index(inplace = True, ascending = False, ignore_index = True)
+
+#syntax to drop column with name 'height'
+MyDataframe.drop(columns = 'height')
+
+#syntax to replace all empty strings in Name column with Ali
+data = data.replace({'Name' : {'' : 'Ali'}})
+
+#In the Gender column, it will replace F with 0 and M with 1.
+data['Gender'].replace({'F' : 0, 'M' : 1}, inplace = True)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# It will look in "age" column all the values that are greater than 10 and it will take mean of those values and will
+replace all the values in column age ,that are less than 10, with this calculated mean. It will round off values 
+to 2 decimal places 
+
+data['age'] = data['age'].where(data['age'] > 10)
+data['age'].fillna(round(data['age'].mean(), 2), inplace = True)
+
+
+
+
+
+
+
+
+
+
+
+

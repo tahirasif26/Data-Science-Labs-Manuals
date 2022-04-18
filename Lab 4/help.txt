@@ -1,0 +1,24 @@
+Some random commands that might be be used to complete this lab task:
+
+
+#remove K from numerical values column of taxable income
+Data['Taxable_Income']=Data['Taxable_Income'].str.replace('K',"")
+
+
+#syntax to get number of rows
+number_of_rows = Data.shape[0]
+
+#syntax to extract only rows where evade is "yes" and then count those rows
+evade_yes_dataframe = Data[Data["Evade"] == "Yes"]
+yes_count = evade_yes_dataframe["Evade"].count()
+
+#calculate mean and variance of values where class is yes
+yes_mean=df['Taxable_Income'].mean()
+yes_variance = df['Taxable_Income'].var()
+
+
+# you may define your normal distribution formula to calculate prob for numerical variable
+def Normal_Disribution_Yes(Income):
+        return((1/math.sqrt(2*math.pi*yes_variance))*(math.exp(((Income-yes_mean)**2)/(2*yes_variance))))
+
+
